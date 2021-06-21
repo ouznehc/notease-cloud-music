@@ -1,4 +1,4 @@
-# CloudMusic
+# Notease-cloud-music（网抑云）
 
 ## 1、简介
 
@@ -47,6 +47,12 @@ npm run dev
 
 ## 4、链接
 
-本文是对网上的代码的学习
+[代码工具人](https://github.com/chen-zuo)
 
-[代码工具人](
+[仓库地址](https://github.com/chen-zuo/notease-cloud-music)
+
+## study
+
+构建笔记已经记录在同目录下的文件中
+
+ => 查看README(study).md
