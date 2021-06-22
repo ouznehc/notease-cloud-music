@@ -22,9 +22,29 @@
 
 ## 2、环境
 
+网易云音乐 NodeJS 版 API，跨站请求伪造 (CSRF), 伪造请求头 , 调用官方 API。拉下来本地用node 跑起来就可以调用了
+
 接口地址：
 
 >  https://binaryify.github.io/NeteaseCloudMusicApi
+
+按顺序执行下面的命令
+
+```js
+git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+
+npm install
+
+cd NeteaseCloudMusicApi
+
+node app.js
+```
+
+
+
+
+
+
 
 技术栈：
 

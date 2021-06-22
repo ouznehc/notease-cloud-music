@@ -1,13 +1,33 @@
-<template>
-  
-</template>
-
 <script>
-export default {
-  name: 'Icon'
-}
+  
+
 </script>
+<style lang="scss" scoped>
+.backdrop {
+  display: inline-block;
+  @include flex-center;
+  border-radius: 50%;
 
-<style>
+  &:hover {
+    background: var(--round-hover-bgcolor);
+  }
+}
 
+.icon-component {
+  cursor: pointer;
+}
+
+.icon-color {
+  // 通过prop传入这几个字段
+  // 可以使用默认的几个颜色
+  &-theme {
+    color: $theme-color;
+  }
+  &-white {
+    color: $white;
+  }
+  &-shallow {
+    color: var(--font-color-shallow-grey);
+  }
+}
 </style>

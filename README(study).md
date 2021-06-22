@@ -28,3 +28,21 @@
 
 
 
+## 3、全局按需引入UI组件
+
+在 utils 工具类 global.js 文件中引入 element-ui 和 base文件夹下的基础组件
+
+> require.context 是 Webpack 中用来管理依赖的一个函数,此方法会生成一个上下文模块,包含目录下所有模块的引用,通过正则表达式匹配,然后 require 进来
+>
+> ​	require.context(directory, useSubdirectories, regExp)
+>
+> - directory: 要查找的文件路径
+> - useSubdirectories: 是否查找子目录
+> - regExp: 要匹配文件的正则
+
+
+
+## 4、响应式rem
+
+
+
