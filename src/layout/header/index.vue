@@ -3,7 +3,9 @@
     <div class="left">
       <!-- 界面控制 -->
       <div class="buttons">
-        
+        <div class="mac-button red"><Icon :size="9" type="home"/></div>
+        <div class="mac-button yellow"><Icon :size="9" type="minus"/></div>
+        <div class="mac-button green"><Icon :size="9" type="fullscreen"/></div>
       </div>
       <!-- 收起播放页 -->
       <div class="shrink-player">
@@ -30,8 +32,7 @@ export default {
   display: flex;
   justify-content: space-between;
   height: $header-height;
-  // background-color: var(--header-bgcolor);
-  background-color: pink;
+  background-color: var(--header-bgcolor);
   padding-right: 36px;
 
   @include el-input-theme(
@@ -62,7 +63,7 @@ export default {
       }
 
       .mac-button {
-        @include round(12px);
+        @include round(14px);
         @include flex-center;
         margin-right: 8px;
         cursor: pointer;

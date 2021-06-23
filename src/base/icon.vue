@@ -1,5 +1,5 @@
 <script>
-  import {toRem} from '@/utils'
+  import { toRem } from '@/utils'
   export default {
     name: 'Icon',
     props:{
@@ -27,16 +27,17 @@
         return cls
       },
       getIconStyle(){
-        return { fontSize: toRem(this.size) }
+        let {size} = this
+        return { fontSize: toRem(size) }
       },
-      click(){
+      click(e){
         this.$emit('click',e)
       }
     },
     render(){
       const { backdrop, size } = this
       const Icon = (
-        <i class={`iconfont icon-component ${this.getIconCls()}`} style={this.getIconStyle} onClick={this.click}/>
+        <i class={`iconfont icon-component ${this.getIconCls()}`} style={this.getIconStyle()} onClick={this.click}/>
       )
       if(backdrop){
         const backDropSizeRatio = 1.56
@@ -45,6 +46,7 @@
           <span class="backdrop" style={{ width: backDropSize, height: backDropSize }}>{Icon}</span>
         )
       }
+      return Icon
     }
   }
 
