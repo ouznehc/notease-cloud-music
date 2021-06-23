@@ -17,7 +17,7 @@ export default {
   install(Vue){
     const requireComponent = require.context("@/base",true,/[a-z0-9]+\.(jsx?|vue)$/i)
     requireComponent.keys().forEach(file => {
-      const componentConfig = requireComponent(fileName)
+      const componentConfig = requireComponent(file)
       const componentName = componentConfig.default.name
       if(componentName) {
         Vue.component(componentName, componentConfig.default || componentConfig)

@@ -1,5 +1,52 @@
 <script>
-  
+  import {toRem} from '@/utils'
+  export default {
+    name: 'Icon',
+    props:{
+      size: {
+        type: Number,
+        default: 16
+      },
+      type: {
+        type: String,
+        required: true
+      },
+      color: {
+        type: String,
+        default: ''
+      },
+      backdrop: {
+        typeof: Boolean,
+        default: false
+      }
+    },
+    methods: {
+      getIconCls(){
+        const { type, color } = this
+        let cls = color ? `icon-${type} icon-color-${color}` : `icon-${type}`
+        return cls
+      },
+      getIconStyle(){
+        return { fontSize: toRem(this.size) }
+      },
+      click(){
+        this.$emit('click',e)
+      }
+    },
+    render(){
+      const { backdrop, size } = this
+      const Icon = (
+        <i class={`iconfont icon-component ${this.getIconCls()}`} style={this.getIconStyle} onClick={this.click}/>
+      )
+      if(backdrop){
+        const backDropSizeRatio = 1.56
+        const backDropSize = toRem(backDropSizeRatio * size)
+        return(
+          <span class="backdrop" style={{ width: backDropSize, height: backDropSize }}>{Icon}</span>
+        )
+      }
+    }
+  }
 
 </script>
 <style lang="scss" scoped>

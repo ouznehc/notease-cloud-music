@@ -4,7 +4,7 @@
 
 更新目录结构
 
-![image-20210621173211357](/Users/chenzuo/Library/Application Support/typora-user-images/image-20210621173211357.png)
+<img src="/Users/chenzuo/Library/Application Support/typora-user-images/image-20210621173211357.png" alt="image-20210621173211357" style="zoom: 25%;" />
 
 安装好需要的依赖，先安装几个简单的后面遇到再装。依赖OK，文件夹创建好后npm run dev运行，查看有问题：
 
@@ -14,7 +14,7 @@
 
 ## 2、引入样式
 
-- 在 src 目录下的 style 文件夹下新建文件 index.scss 作为出口，在其中引用重置浏览器、element-ui、app样式的文件。
+> 在 src 目录下的 style 文件夹下新建文件 index.scss 作为出口，在其中引用重置浏览器、element-ui、app样式的文件。
 
 - 安装生产依赖 `"element-ui": "^2.13.2",` ⚠️官网说要要在入口引入element-ui 的css样式表，所以在mai n.js入口处同时引入：
 
@@ -30,19 +30,25 @@
 
 ## 3、全局按需引入UI组件
 
-在 utils 工具类 global.js 文件中引入 element-ui 和 base文件夹下的基础组件
+> 在 utils 工具类 global.js 文件中引入 element-ui 和 base文件夹下的基础组件
 
-> require.context 是 Webpack 中用来管理依赖的一个函数,此方法会生成一个上下文模块,包含目录下所有模块的引用,通过正则表达式匹配,然后 require 进来
->
-> ​	require.context(directory, useSubdirectories, regExp)
->
-> - directory: 要查找的文件路径
-> - useSubdirectories: 是否查找子目录
-> - regExp: 要匹配文件的正则
+require.context 是 Webpack 中用来管理依赖的一个函数,此方法会生成一个上下文模块,包含目录下所有模块的引用,通过正则表达式匹配,然后 require 进来
+
+require.context(directory, useSubdirectories, regExp
+
+- directory: 要查找的文件路径
+- useSubdirectories: 是否查找子目录
+- regExp: 要匹配文件的正则
 
 
 
 ## 4、响应式rem
+
+>  在utils 中新建 rem.js
+
+为页面resize增加监听事件，动态设置根节点的字体大小，暴露方法供其他地方设置rem大小
+
+⚠️resize 事件最好加上 throttle
 
 
 
