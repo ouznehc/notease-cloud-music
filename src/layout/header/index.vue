@@ -29,6 +29,8 @@
 import RoutesHistory from './routes-history.vue'
 import Search from './search.vue'
 import Theme from './theme.vue'
+import { requestFullScreen, exitFullscreen, isFullscreen } from "@/utils";
+
 export default {
   components: { RoutesHistory, Search, Theme },
   methods: {
@@ -36,13 +38,13 @@ export default {
       this.$router.push('/discovery')
     },
     exitFullscreen(){
-
+      if (isFullscreen()) exitFullscreen()
     },
     fullscreen(){
-      // requestFullScreen(document.documentElement)
+      requestFullScreen(document.documentElement)
     },
     onClickDown(){
-
+    
     },
   }
 }
