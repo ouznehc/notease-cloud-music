@@ -1,6 +1,14 @@
 <template>
   <div class="theme">
-
+    <el-popover pacement="top" width="230" trigger="click" >
+      <div class="themes">
+        <div class="theme-item" v-for="(val, key, index) in themeMap" :key="index" @click="changeTheme(key)">
+          <div class="theme-icon" :style="val.style"></div>
+          <p>{{val.title}}</p>
+        </div>
+      </div>
+      <Icon :backdrop="true" slot="reference" type="skin"/>
+    </el-popover>
   </div>
 </template>
 
