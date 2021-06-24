@@ -3,26 +3,48 @@
     <div class="left">
       <!-- 界面控制 -->
       <div class="buttons">
-        <div class="mac-button red"><Icon :size="9" type="home"/></div>
-        <div class="mac-button yellow"><Icon :size="9" type="minus"/></div>
-        <div class="mac-button green"><Icon :size="9" type="fullscreen"/></div>
+        <div class="mac-button red" @click="onClickHome"><Icon :size="9" type="home"/></div>
+        <div class="mac-button yellow" @click="exitFullscreen"><Icon :size="9" type="minus"/></div>
+        <div class="mac-button green" @click="fullscreen"><Icon :size="9" type="fullscreen"/></div>
       </div>
       <!-- 收起播放页 -->
-      <div class="shrink-player">
-
+      <div class="shrink-player" @click="onClickDown">
+        <Icon type="down" :backdrop="true"></Icon>
       </div>
       <!-- 路由控制器 -->
-      
+      <div class="history">
+        <RoutesHistory/>
+      </div>
     </div>
     <div class="right">
-
+      <div class="search-wrap">
+        <Search/>
+      </div>
+      <Theme/>
     </div>
   </div>
 </template>
 
 <script>
+import RoutesHistory from './routes-history.vue'
+import Search from './search.vue'
+import Theme from './theme.vue'
 export default {
+  components: { RoutesHistory, Search, Theme },
+  methods: {
+    onClickHome(){
+      this.$router.push('/discovery')
+    },
+    exitFullscreen(){
 
+    },
+    fullscreen(){
+      // requestFullScreen(document.documentElement)
+    },
+    onClickDown(){
+
+    },
+  }
 }
 </script>
 
