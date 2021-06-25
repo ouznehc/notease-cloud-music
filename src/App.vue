@@ -5,7 +5,7 @@
       <div class="layout-body">
         <div class="layout-menu"><LayoutMenu/></div>
         <div class="content">
-
+          <router-view :class="routerViewCls" />
         </div>
       </div>
     </div>
@@ -16,16 +16,29 @@
 import LayoutHeader from './layout/header'
 import LayoutMenu from './layout/menu'
 import MiniPlayer from './layout/miniPlayer'
+const LayoutCenterNames = ['discovery', 'songs', 'mvs']
+
 
 export default{
   name: 'APP',
   components:{ LayoutHeader, LayoutMenu, MiniPlayer },
-  
+  computed:{
+    routerViewCls() {
+      return LayoutCenterNames.find((name) => name === this.$route.name)
+        ? "router-view-center"
+        : "";
+    },
+  }
 }
 </script>
 
 
 <style lang="scss" scoped>
+#app {
+  height: 100%;
+  background-color: var(--body-bgcolor);
+  font-size: $font-size;
+}
 .layout {
   height: 100%;
 

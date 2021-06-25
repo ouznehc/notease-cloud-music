@@ -44,6 +44,32 @@ require.context(directory, useSubdirectories, regExp
 
 ## 4、响应式rem
 
+> 依赖 *postcss-pxtorem*（自动处理 rem）
+
+安装开发依赖 `npm install postcss-pxtorem -D`
+
+需要在vue.config.js 作配置
+
+```js
+module.exports = {
+	...
+    css: {
+      loaderOptions: {
+        postcss: {
+          plugins: [
+            require('postcss-pxtorem')({ // 把px单位换算成rem单位
+              rootValue: 14, // 换算的基数：设计稿元素尺寸/rootValue，比如元素宽28px,最终页面会换算成 2rem
+              propList: ['*']
+            })
+          ]}
+      }
+    }
+  ...
+}
+```
+
+
+
 >  在utils 中新建 rem.js
 
 为页面resize增加监听事件，动态设置根节点的字体大小，暴露方法供其他地方设置rem大小
