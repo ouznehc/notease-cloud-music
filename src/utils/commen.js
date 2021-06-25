@@ -32,3 +32,9 @@ export function isFullscreen() {
     document.mozFullScreen ||
     document.webkitIsFullScreen
 }
+
+// 更改图片的url
+export function genImgUrl (url, w, h) {
+  if (!h) h = w
+  return url += `?param=${w}y${h}`
+}
