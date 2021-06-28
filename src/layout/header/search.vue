@@ -16,7 +16,7 @@ export default {
 <style lang="scss" scoped>
 .search {
   position: relative;
-  width: 150px;
+  width: 250px;
 
   .search-panel {
     position: fixed;
