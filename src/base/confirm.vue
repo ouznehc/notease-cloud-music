@@ -41,9 +41,9 @@ export const confirm = function(text, title, onConfirm=()=>{}){
 
   Vue.nextTick(() => {
     instance.visible = true
-  })
+    })
 }
-Vue.prototype.$confirm = confirm;
+  Vue.prototype.$confirm = confirm;
 
 </script>
 

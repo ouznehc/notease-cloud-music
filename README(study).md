@@ -88,5 +88,13 @@ module.exports = {
 
 
 
+## 6、全局弹窗组件
 
+> 使用Vue.extend + $mount 创建DOM， Vue.prototype全局挂载
+
+具体查看 src/base/confirm.vue ，导出confirm方法/ 组件 和 全局挂载 confirm方法`Vue.prototype.$confirm = confirm;`
+
+
+
+## 7、
 
