@@ -12,6 +12,9 @@ import {
   Pagination
 } from "element-ui"
 import * as utils from './index'
+import VueLazyload from 'vue-lazyload'
+const EMPTY_IMG = "data:image/gif;base64, R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+
 
 export default {
   install(Vue){
@@ -37,5 +40,9 @@ export default {
     Vue.use(Popover)
     Vue.use(Pagination)
 
+    Vue.use(VueLazyload, {
+      loading: EMPTY_IMG,
+      error: EMPTY_IMG,
+    })
   }
 }

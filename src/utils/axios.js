@@ -21,12 +21,13 @@ function baseInstance(){
     confirm(e.message, "出错啦！");
     throw err;
   })
+  return instance
 }
 // 混入loading拦截器的函数
 let loading
 let loadingCount = 0
-function minxinLoading(interceptors){
-  interceptors.request.usr(config => {
+function mixinLoading(interceptors){
+  interceptors.request.use(config => {
     if(!loading){
       loading = Loading.service({
         traget: 'body',
