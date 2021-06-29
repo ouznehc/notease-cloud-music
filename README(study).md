@@ -90,11 +90,14 @@ module.exports = {
 
 ## 6、全局弹窗组件
 
-> 使用Vue.extend + $mount 创建DOM， Vue.prototype全局挂载
+> 基础组件<Confirm/>使用Vue.extend + $mount 创建DOM， Vue.prototype全局挂载
 
 具体查看 src/base/confirm.vue ，导出confirm方法/ 组件 和 全局挂载 confirm方法`Vue.prototype.$confirm = confirm;`
 
 
 
-## 7、
+## 7、封装axios网络请求
 
+> 通过拦截器对使用vuex对axios 做loading封装
+
+创建实例时配置可以抽离到全局的配置config.js文件中
