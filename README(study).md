@@ -100,4 +100,27 @@ module.exports = {
 
 > 通过拦截器对使用vuex对axios 做loading封装
 
-创建实例时配置可以抽离到全局的配置config.js文件中
+
+
+## 8、左侧弹出层
+
+> 通常弹出层都是使用遮罩去控制开关，这里使用了节点之间的关系判断去控制弹出层的开关
+
+```js
+// parentDom 数组中是否有 dom 的父节点
+export function hasParent(dom, parentDom) {
+  parentDom = Array.isArray(parentDom) ? parentDom : [parentDom]
+  while(dom){
+    if(parentDom.find(p => p === dom)){
+      return true
+    } else {
+      dom = dom.parentNode
+    }
+  }
+}
+```
+
+> Vue 中使用`@click.native` `:show.sync`
+
+- `@click.native` 是为了区分自定义组件的点击事件是否发生在本身，不加native会解析为来给组件传入自定义事件click
+- `:show.sync = "show"` 给组件传值等价于 `:show="show"  @update:age="(res) => show = res"`

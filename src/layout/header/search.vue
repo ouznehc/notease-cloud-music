@@ -1,15 +1,36 @@
 <template>
   <div class="search">
-    <el-input 
+    <el-input
       placeholder="搜索"
       prefix-icon="el-icon-search"
+      @click.native="onClickInput"
     />
+    <Toggle :show.sync = "searchPanelShow" v-show="searchPanelShow">
+      <div class="search-panel"></div>
+    </Toggle>
   </div>
 </template>
 
 <script>
-export default {
+import storage from "good-storage";
+import { getSearchHot, getSearchSuggest } from "@/api";
+import { createSong, getArtistsText, debounce } from "@/utils";
+import { mapActions, mapMutations } from '@/store/music'
 
+export default {
+  data() {
+    return {
+      searchPanelShow: false
+    }
+  },
+  methods:{
+    onClickInput() {
+      this.searchPanelShow = true;
+    },
+  },
+  computed:{
+
+  }
 }
 </script>
 

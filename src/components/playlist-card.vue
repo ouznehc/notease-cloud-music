@@ -15,8 +15,8 @@
 export default {
   props: ['id', 'img', 'name', 'desc'],
   methods:{
-    onClickCard(e){
-      console.log(e)
+    onClickCard(){
+      console.log(this.id)
     }
   }
 }
