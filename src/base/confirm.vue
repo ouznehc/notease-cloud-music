@@ -14,6 +14,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+let instance = null //全局单例模式
+
+// 组件式调用
 const Confirm = {
   name: 'Confirm',
   props: ['visible', 'text', 'title', 'onConfirm'],
@@ -21,27 +25,22 @@ const Confirm = {
     confirmAndClose() {
       this.onConfirm && this.onConfirm()
       this.visible = false
+      instance = null
     }
   }
 }
 export default Confirm
 
-import Vue from 'vue'
+//命令式调用 
 export const confirm = function(text, title, onConfirm=()=>{}){
-  if (typeof title === 'function') {
-    onConfirm = title
-    title = undefined
-  }
+  if(instance) return
   const ConfirmConstructor = Vue.extend(Confirm)
-  let instance =  new ConfirmConstructor({
+  instance =  new ConfirmConstructor({
     propsData:{text, title, onConfirm}
   })
   instance.$mount()
   document.body.appendChild(instance.$el)
-
-  Vue.nextTick(() => {
-    instance.visible = true
-    })
+  Vue.nextTick(() => { instance.visible = true })
 }
   Vue.prototype.$confirm = confirm;
 
