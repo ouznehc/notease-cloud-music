@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="layout-header">
     <div class="left">
       <!-- 界面控制 -->
       <div class="buttons">
@@ -52,12 +52,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/style/element-overwrite.scss";
-.header {
+.layout-header {
+  position: relative;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   height: $header-height;
   background-color: var(--header-bgcolor);
   padding-right: 36px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .3);
 
   @include el-input-theme(
     var(--header-input-color),

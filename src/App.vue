@@ -44,6 +44,8 @@ export default{
 
   .layout-body {
     display: flex;
+    position: relative;
+    z-index: 9;
     height: calc(100% - #{$header-height});
 
     .layout-menu {
