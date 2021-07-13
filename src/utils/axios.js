@@ -12,13 +12,13 @@ mixinLoading(request.interceptors)
 
 // 通用的 axios 实例
 function baseInstance(){
-  const instance = axios.create({
+  const instance = axios.create({ 
     baseURL: BASE_URL
   })
   instance.interceptors.response.use((res) => {
     return res.data;
   } , (err) => {
-    confirm(e.message, "出错啦！");
+    confirm(err.message, "出错啦！");
     throw err;
   })
   return instance
@@ -54,6 +54,6 @@ function mixinLoading(interceptors){
       loading = null
       store.commit('global/setAxiosLoading', false)
     }
-    return err
+    throw err
   })
 }
