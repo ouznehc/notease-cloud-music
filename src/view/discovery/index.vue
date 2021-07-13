@@ -3,6 +3,7 @@
     <div class="discovery-content">
       <Banner/>
       <NewPlaylists/>
+      <NewSongs/>
     </div>
   </div>
 </template>
@@ -10,14 +11,9 @@
 <script>
 import Banner from './banner.vue'
 import NewPlaylists from './new-playlists.vue'
+import NewSongs from './new-songs.vue'
 export default {
-  components:{ Banner, NewPlaylists },
-  data() {
-    return {
-      
-    }
-  },
-  
+  components:{ Banner, NewPlaylists, NewSongs },
 }
 </script>
 

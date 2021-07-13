@@ -5,7 +5,7 @@ import mutations from './mutations'
 import actions from './actions'
 
 export default {
-  namesapced: true,
+  namespaced: true,
   state,
   getters,
   mutations,
