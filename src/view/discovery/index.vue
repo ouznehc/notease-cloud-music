@@ -1,9 +1,10 @@
 <template>
   <div class="discovery">
     <div class="discovery-content">
-      <Banner/>
-      <NewPlaylists/>
-      <NewSongs/>
+      <Banner />
+      <NewPlaylists />
+      <NewSongs />
+      <NewMvs />
     </div>
   </div>
 </template>
@@ -12,8 +13,9 @@
 import Banner from './banner.vue'
 import NewPlaylists from './new-playlists.vue'
 import NewSongs from './new-songs.vue'
+import NewMvs from './new-mvs.vue'
 export default {
-  components:{ Banner, NewPlaylists, NewSongs },
+  components:{ Banner, NewPlaylists, NewSongs, NewMvs },
 }
 </script>
 

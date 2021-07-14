@@ -3,7 +3,6 @@ export const BASE_URL = "http://localhost:3000/";
 
 // 一些默认数据
 // discovery
-export { bannerList, newSongsList, newPlayLists }
 const bannerList = [
   {
       "imageUrl": "http://p1.music.126.net/S22Khy7j8-psRjxDD5Zmmg==/109951166172407313.jpg",
@@ -2361,3 +2360,90 @@ const newSongsList = [
       "alg": "hot_server"
   }
 ]
+const newMvsList = [
+  {
+      "id": 14298969,
+      "type": 5,
+      "name": "世界の中心で虹を叫んだサマー",
+      "copywriter": "最新热门MV推荐",
+      "picUrl": "https://p1.music.126.net/345oST5ogDjAEfCJ-q6J2w==/109951166159463296.jpg",
+      "canDislike": true,
+      "trackNumberUpdateTime": null,
+      "duration": 341000,
+      "playCount": 4881,
+      "subed": false,
+      "artists": [
+          {
+              "id": 1135142,
+              "name": "虹のコンキスタドール"
+          }
+      ],
+      "artistName": "虹のコンキスタドール",
+      "artistId": 1135142,
+      "alg": "hot_server"
+  },
+  {
+      "id": 14299485,
+      "type": 5,
+      "name": "Apple Blossom Time (Live On The Ed Sullivan Show, May 30, 1965)",
+      "copywriter": "最新热门MV推荐",
+      "picUrl": "https://p1.music.126.net/WwXqP1idpwFxQ710CEV6Zg==/109951166176151123.jpg",
+      "canDislike": true,
+      "trackNumberUpdateTime": null,
+      "duration": 110000,
+      "playCount": 345,
+      "subed": false,
+      "artists": [
+          {
+              "id": 84417,
+              "name": "Wayne Newton"
+          }
+      ],
+      "artistName": "Wayne Newton",
+      "artistId": 84417,
+      "alg": "hot_server"
+  },
+  {
+      "id": 14299446,
+      "type": 5,
+      "name": "Don't Jealous Me - Renan Choreography",
+      "copywriter": "最新热门MV推荐",
+      "picUrl": "https://p1.music.126.net/Fy7_f19CLGfhCKBCQFH65A==/109951166174905445.jpg",
+      "canDislike": true,
+      "trackNumberUpdateTime": null,
+      "duration": 219000,
+      "playCount": 490,
+      "subed": false,
+      "artists": [
+          {
+              "id": 12155385,
+              "name": "1 MILLION"
+          }
+      ],
+      "artistName": "1 MILLION",
+      "artistId": 12155385,
+      "alg": "hot_server"
+  },
+  {
+      "id": 14299442,
+      "type": 5,
+      "name": "SOLO Remix - Learner's Class",
+      "copywriter": "最新热门MV推荐",
+      "picUrl": "https://p1.music.126.net/NX6f3WhGzTiko9T1HnBFOw==/109951166174911595.jpg",
+      "canDislike": true,
+      "trackNumberUpdateTime": null,
+      "duration": 122000,
+      "playCount": 531,
+      "subed": false,
+      "artists": [
+          {
+              "id": 12155385,
+              "name": "1 MILLION"
+          }
+      ],
+      "artistName": "1 MILLION",
+      "artistId": 12155385,
+      "alg": "hot_server"
+  }
+]
+export { bannerList, newSongsList, newPlayLists, newMvsList }

@@ -39,7 +39,7 @@ export default {
         style: { backgroundColor: '#D33A31' }
       }
     }
-    this.changeTheme(storage.get('__theme__', 'white'))
+    this.changeTheme(storage.get('__theme__', 'dark'))
   },
   data(){
     return { themeMap: {} }
