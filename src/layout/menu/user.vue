@@ -55,7 +55,7 @@ export default {
   }
 
   .user-icon {
-    font-size: 24px;
+    font-size: 16px;
   }
 
   .user-name {
