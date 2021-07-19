@@ -85,6 +85,7 @@ export default {
   padding: 8px 16px;
   padding-right: 24px;
   background: var(--body-bgcolor);
+  box-shadow: 0px 0px 1px 0px rgba($color: pink, $alpha: 0.5);
 
   .song {
     display: flex;
