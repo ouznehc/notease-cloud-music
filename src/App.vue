@@ -9,19 +9,24 @@
         </div>
       </div>
     </div>
+    <Player />
+    <MiniPlayer />
+    <Playlist />
   </div>
 </template>
 
 <script>
 import LayoutHeader from './layout/header'
 import LayoutMenu from './layout/menu'
+import Player from './layout/player'
 import MiniPlayer from './layout/miniPlayer'
+import Playlist from './layout/playlist'
 const LayoutCenterNames = ['discovery', 'songs', 'mvs']
 
 
 export default{
   name: 'APP',
-  components:{ LayoutHeader, LayoutMenu, MiniPlayer },
+  components:{ LayoutHeader, LayoutMenu, Player, MiniPlayer, Playlist },
   computed:{
     routerViewCls() {
       return LayoutCenterNames.find((name) => name === this.$route.name)

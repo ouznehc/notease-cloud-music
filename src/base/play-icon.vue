@@ -1,28 +1,28 @@
 <template>
-  <div class="play-icon-wrap" :style="wrapStyle">
-    <Icon class="paly-icon" :size="iconSize" type="play"/>
+  <div :style="wrapStyle" class="play-icon-wrap">
+    <Icon :size="iconSize" class="play-icon" type="play" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PlayIcon',
+  name: "PlayIcon",
   props: {
     size: {
       type: Number,
-      default: 24
-    }
+      default: 24,
+    },
   },
   computed: {
     wrapStyle() {
-      return { width: `${this.size}px`, height: `${this.size}px` }
+      return { width: `${this.size}px`, height: `${this.size}px` };
     },
     iconSize() {
-      const iconSize = this.size * 0.6
-      return iconSize
-    }
-  }
-}
+      const iconSize = this.size * 0.6;
+      return iconSize;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

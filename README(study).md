@@ -100,7 +100,7 @@ module.exports = {
 
 > 通过拦截器对使用vuex对axios 做loading封装
 
-
+分为两种，一种带loading 一种不带loading
 
 ## 8、左侧弹出层
 
@@ -124,3 +124,11 @@ export function hasParent(dom, parentDom) {
 
 - `@click.native` 是为了区分自定义组件的点击事件是否发生在本身，不加native会解析为来给组件传入自定义事件click
 - `:show.sync = "show"` 给组件传值等价于 `:show="show"  @update:age="(res) => show = res"`
+
+
+
+## 9、全局的confirm组件
+
+> 全局的confirm组件的命令式调用改为单例子
+
+多个弹窗时候只会出现最新的一个弹窗提示
