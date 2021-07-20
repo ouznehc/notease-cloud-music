@@ -9,3 +9,7 @@ export function hasParent(dom, parentDom) {
     }
   }
 }
+
+export function scrollInto(dom) {
+  dom.scrollIntoView({ behavior: "smooth" })
+}

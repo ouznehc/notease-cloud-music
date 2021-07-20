@@ -47,3 +47,7 @@ export function formatNumber (number) {
   number = Number(number) || 0
   return number > 100000 ? `${Math.round(number / 10000)}万` : number
 }
+
+export function getPageOffset (page, limit) {
+  return (page - 1) * limit
+}
