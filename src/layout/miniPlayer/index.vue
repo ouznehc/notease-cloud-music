@@ -57,19 +57,26 @@
         <p class="pop-text">已更新歌单</p>
         <Icon :size="20" @click="togglePlaylistShow" class="mode-item" slot="reference" type="playlist"/>
       </el-popover>
+
+      <div class="volume-item">
+        <Volume :volume="volume" @volumeChange="onVolumeChange" />
+      </div>
       
       <Icon :size="20" @click="goGitHub" class="mode-item" type="github" />
     </div>
     <!-- 进度 -->
-    <div class="progress-bar-wrap"></div>
+    <div class="progress-bar-wrap">
+      
+    </div>
     
     <!-- 媒体 -->
-    <audio></audio>
+    <audio ref="audio"></audio>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations, mapGetters, mapActions} from '@/store/music'
+import storage from 'good-storage'
 import Share from '@/components/share'
 const playModeMap = {
   sequence: {
@@ -95,7 +102,11 @@ export default {
     return {
       isPlayErrorPromptShow:false,
       songReady: false,
+      volume: storage.get('__volume__', 0.75),
     }
+  },
+  mounted() {
+    this.audio.volume = this.volume
   },
   methods: {
     togglePlaying() {
@@ -120,6 +131,10 @@ export default {
     togglePlaylistShow() {
       this.setPlaylistShow(!this.isPlaylistShow)
     },
+    onVolumeChange(percent) {
+      this.audio.volume = percent
+      storage.set('__volume__', percent)
+    },
     goGitHub() {
       window.open('https://github.com/chen-zuo/notease-cloud-music')
     },
@@ -133,6 +148,9 @@ export default {
     ...mapActions(['startSong']),
   },
   computed: {
+    audio() {
+      return this.$refs.audio
+    },
     playIcon() {
       return this.playing ? 'pause' : 'play'
     },
