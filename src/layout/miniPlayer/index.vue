@@ -47,6 +47,18 @@
     <!-- 模式 -->
     <div class="mode">
       <Share :shareUrl="shareUrl" class="mode-item" v-show="hasCurrentSong" />
+      
+      <el-popover placement="top" trigger="hover">
+        <p class="pop-text">{{ playModeText }}</p>
+        <Icon :size="20" :type="modeIcon" @click="onChangePlayMode" class="mode-item" slot="reference"/>
+      </el-popover>
+
+      <el-popover :value="isPlaylistPromptShow" placement="top" trigger="manual">
+        <p class="pop-text">已更新歌单</p>
+        <Icon :size="20" @click="togglePlaylistShow" class="mode-item" slot="reference" type="playlist"/>
+      </el-popover>
+      
+      <Icon :size="20" @click="goGitHub" class="mode-item" type="github" />
     </div>
     <!-- 进度 -->
     <div class="progress-bar-wrap"></div>
@@ -59,6 +71,23 @@
 <script>
 import { mapState, mapMutations, mapGetters, mapActions} from '@/store/music'
 import Share from '@/components/share'
+const playModeMap = {
+  sequence: {
+    code: 'sequence',
+    icon: 'sequence',
+    name: '顺序播放'
+  },
+  loop: {
+    code: 'loop',
+    icon: 'loop',
+    name: '单曲循环'
+  },
+  random: {
+    code: 'random',
+    icon: 'random',
+    name: '随机播放'
+  },
+}
 
 export default {
   components: { Share },
@@ -78,6 +107,22 @@ export default {
     },
     prev() { if(this.songReady) this.startSong(this.prevSong) },
     next() { if(this.songReady) this.startSong(this.nextSong) },
+    onChangePlayMode() {
+      const modeKeys = Object.keys(playModeMap)
+      const currentModeIndex = modeKeys.findIndex(
+        (key) => playModeMap[key].code === this.playMode
+      )
+      const nextIndx = (currentModeIndex + 1) % modeKeys.length
+      const nextModeKey = modeKeys[nextIndx]
+      const nextMode = playModeMap[nextModeKey]
+      this.setPlayMode(nextMode.code)
+    },
+    togglePlaylistShow() {
+      this.setPlaylistShow(!this.isPlaylistShow)
+    },
+    goGitHub() {
+      window.open('https://github.com/chen-zuo/notease-cloud-music')
+    },
     ...mapMutations([
       'setCurrentTime',
       'setPlayingState',
@@ -96,6 +141,15 @@ export default {
     },    
     shareUrl() {
       return `https://music.163.com/#/song?id=${this.currentSong.id}`
+    },
+    currentMode() {
+      return playModeMap[this.playMode]
+    },
+    modeIcon() {
+      return this.currentMode.icon
+    },
+    playModeText() {
+      return this.currentMode.name
     },
     ...mapState([
       'currentSong',
@@ -147,6 +201,11 @@ export default {
 
       .player-control {
         @include abs-center;
+        opacity: 0;
+        transition: all ease-in-out .3s;
+      }
+      .player-control:hover{
+        opacity: 1;
       }
 
       .mask {
@@ -250,7 +309,6 @@ export default {
     top: -14px;
   }
 }
-
 .icon {
   color: var(--font-color);
   cursor: pointer;
@@ -259,4 +317,8 @@ export default {
   transform: scale(.8);
   transition: all ease-in-out;
 }
+.pop-text{
+  text-align: center;
+}
 </style>
+
