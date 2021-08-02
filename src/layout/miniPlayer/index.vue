@@ -216,4 +216,8 @@ export default {
   color: var(--font-color);
   cursor: pointer;
 }
+.icon:active{
+  transform: scale(.8);
+  transition: all ease-in-out;
+}
 </style>
