@@ -75,4 +75,4 @@ npm run dev
 
 构建笔记已经记录在同目录下的文件中
 
- => 查看README(study).md
+ => 查看PROCESS.md

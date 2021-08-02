@@ -1,7 +1,33 @@
 <template>
   <div class="mini-player" id="mini-player">
-    <!-- 歌曲内容 -->
-    <div class="song"></div>
+    <!-- 歌曲 -->
+    <div class="song">
+      <template v-if="hasCurrentSong">
+        <div @click="togglePlayerShow" class="img-wrap">
+          <div class="mask"></div>
+          <img v-lazy="$utils.genImgUrl(currentSong.img, 80)" class="blur" />
+          <div class="player-control">
+            <Icon :size="24" :type="playControlIcon" color="white" />
+          </div>
+        </div>
+        <div class="content">
+          <div class="top">
+            <p class="name">{{ currentSong.name }}</p>
+            <p class="split">-</p>
+            <p class="artists">{{ currentSong.artistsText }}</p>
+          </div>
+          <div class="time">
+            <span class="played-time">
+              {{ $utils.formatTime(currentTime) }}
+            </span>
+            <span class="split">/</span>
+            <span class="total-time">
+              {{ $utils.formatTime(currentSong.duration / 1000) }}
+            </span>
+          </div>
+        </div>
+      </template>
+    </div>
     <!-- 控制 -->
     <div class="control">
       <Icon :size="24" @click="prev" class="icon" type="prev" />
@@ -19,7 +45,9 @@
       <Icon :size="24" @click="next" class="icon" type="next" />
     </div>
     <!-- 模式 -->
-    <div class="mode"></div>
+    <div class="mode">
+      <Share :shareUrl="shareUrl" class="mode-item" v-show="hasCurrentSong" />
+    </div>
     <!-- 进度 -->
     <div class="progress-bar-wrap"></div>
     
@@ -30,8 +58,10 @@
 
 <script>
 import { mapState, mapMutations, mapGetters, mapActions} from '@/store/music'
+import Share from '@/components/share'
+
 export default {
-  components: {},
+  components: { Share },
   data() {
     return {
       isPlayErrorPromptShow:false,
@@ -42,6 +72,9 @@ export default {
     togglePlaying() {
       if (!this.currentSong.id) return
       this.setPlayingState(!this.playing)
+    },
+    togglePlayerShow() {
+      this.setPlayerShow(!this.isPlayerShow)
     },
     prev() { if(this.songReady) this.startSong(this.prevSong) },
     next() { if(this.songReady) this.startSong(this.nextSong) },
@@ -57,6 +90,12 @@ export default {
   computed: {
     playIcon() {
       return this.playing ? 'pause' : 'play'
+    },
+    playControlIcon() {
+      return this.isPlayerShow ? 'shrink' : 'open'
+    },    
+    shareUrl() {
+      return `https://music.163.com/#/song?id=${this.currentSong.id}`
     },
     ...mapState([
       'currentSong',

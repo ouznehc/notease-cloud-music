@@ -132,3 +132,14 @@ export function hasParent(dom, parentDom) {
 > 全局的confirm组件的命令式调用改为单例子
 
 多个弹窗时候只会出现最新的一个弹窗提示
+
+
+
+## 10、使用clipboard依赖 
+
+用于操作剪切板
+
+创建的时候就绑定事件    `let clipboard = new ClipboardJS(".btn");`
+
+
+

@@ -2,7 +2,7 @@ import storage from "good-storage";
 
 export default {
   // 当前播放歌曲
-  currentSong: {},
+  currentSong:{"id":1859401485,"name":"Monster","img":"http://p4.music.126.net/gqZriO5BoxyIWqyfIn0H5Q==/109951166156555622.jpg","artists":[{"name":"YOASOBI","id":33927412,"picId":0,"img1v1Id":0,"briefDesc":"","picUrl":"http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg","img1v1Url":"http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg","albumSize":0,"alias":[],"trans":"","musicSize":0,"topicPerson":0}],"duration":205000,"albumName":"__vue_devtool_undefined__","url":"https://music.163.com/song/media/outer/url?id=1859401485.mp3","artistsText":"YOASOBI","durationSecond":205,"albumId":"__vue_devtool_undefined__","mvId":14303290},
   // 当前播放时长
   currentTime: 0,
   // 播放状态
