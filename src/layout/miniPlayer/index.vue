@@ -31,15 +31,10 @@
     <!-- 控制 -->
     <div class="control">
       <Icon :size="24" @click="prev" class="icon" type="prev" />
-      <el-popover
-        :value="isPlayErrorPromptShow"
-        placement="top"
-        trigger="manual"
-        width="160"
-      >
+      <el-popover :value="isPlayErrorPromptShow" placement="top" trigger="manual" width="160">
         <p>请点击开始播放</p>
         <div @click="togglePlaying" slot="reference" class="play-icon">
-          <Icon :size="24" :type="playIcon" />
+          <Icon :size="24" :type="playIcon" style="transition: all ease .3s;"/>
         </div>
       </el-popover>
       <Icon :size="24" @click="next" class="icon" type="next" />
@@ -66,11 +61,11 @@
     </div>
     <!-- 进度 -->
     <div class="progress-bar-wrap">
-      
+      <ProgressBar :disabled="!hasCurrentSong" :percent="playedPercent" @percentChange="onProgressChange"/>
     </div>
     
     <!-- 媒体 -->
-    <audio ref="audio"></audio>
+    <audio :src="currentSong.url" @canplay="ready" @ended="end" @timeupdate="updateTime" @error="urlError" ref="audio"></audio>
   </div>
 </template>
 
@@ -116,6 +111,23 @@ export default {
     togglePlayerShow() {
       this.setPlayerShow(!this.isPlayerShow)
     },
+    async play() {
+      if (this.songReady) {
+        try {
+          await this.audio.play()
+          if (this.isPlayErrorPromptShow) {
+            this.isPlayErrorPromptShow = false
+          }
+        } catch (error) {
+          // 提示用户手动播放
+          this.isPlayErrorPromptShow = true
+          this.setPlayingState(false)
+        }
+      }
+    },
+    pause() {
+      this.audio.pause()
+    },
     prev() { if(this.songReady) this.startSong(this.prevSong) },
     next() { if(this.songReady) this.startSong(this.nextSong) },
     onChangePlayMode() {
@@ -138,6 +150,24 @@ export default {
     goGitHub() {
       window.open('https://github.com/chen-zuo/notease-cloud-music')
     },
+    onProgressChange(percent) {
+      this.audio.currentTime = this.currentSong.durationSecond * percent
+      this.setPlayingState(true)
+    },
+    ready() {
+      this.songReady = true
+    },
+    end() {
+      this.next()
+    },
+    updateTime(e) {
+      const time = e.target.currentTime
+      this.setCurrentTime(time)
+    },
+    urlError() {
+      this.startSong(this.nextSong)
+      notify.info('因合作方要求,该资源暂时下架>_<')
+    },
     ...mapMutations([
       'setCurrentTime',
       'setPlayingState',
@@ -150,6 +180,11 @@ export default {
   computed: {
     audio() {
       return this.$refs.audio
+    },
+    // 播放的进度百分比
+    playedPercent() {
+      const { durationSecond } = this.currentSong
+      return Math.min(this.currentTime / durationSecond, 1) || 0
     },
     playIcon() {
       return this.playing ? 'pause' : 'play'
@@ -179,7 +214,36 @@ export default {
       'isPlayerShow',
     ]),
     ...mapGetters(['hasCurrentSong', 'prevSong', 'nextSong']),
-  }
+  },
+  watch: {
+    currentSong(newSong, oldSong) {
+      // 清空了歌曲
+      if (!newSong.id) {
+        this.audio.pause()
+        this.audio.currentTime = 0
+        return
+      }
+      // 单曲循环
+      if (oldSong && newSong.id === oldSong.id) {
+        this.setCurrentTime(0)
+        this.audio.currentTime = 0
+        this.play()
+        return
+      }
+      this.songReady = false
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.play()
+      }, 1000)
+    },
+    playing(newPlaying) {
+      this.$nextTick(() => {
+        newPlaying ? this.play() : this.pause()
+      })
+    },
+  },
 }
 </script>
 
